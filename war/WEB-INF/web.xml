@@ -7,24 +7,24 @@
   
   <!-- Servlets -->
   <servlet>
-    <servlet-name>oldServlet</servlet-name>
-    <servlet-class>com.excilys.blog.bigrpc.server.OldRpcServiceImpl</servlet-class>
+    <servlet-name>classicRpcServlet</servlet-name>
+    <servlet-class>com.excilys.blog.bigrpc.server.ClassicRpcServiceImpl</servlet-class>
   </servlet>
   
     
   <servlet>
-    <servlet-name>newServlet</servlet-name>
-    <servlet-class>com.excilys.blog.bigrpc.server.NewRpcServiceImpl</servlet-class>
+    <servlet-name>deRpcServlet</servlet-name>
+    <servlet-class>com.excilys.blog.bigrpc.server.DeRpcServiceImpl</servlet-class>
   </servlet>
   
   <servlet-mapping>
-    <servlet-name>oldServlet</servlet-name>
-    <url-pattern>/bigrpc/old</url-pattern>
+    <servlet-name>classicRpcServlet</servlet-name>
+    <url-pattern>/gwtrpctest/classicRpc</url-pattern>
   </servlet-mapping>
   
   <servlet-mapping>
-    <servlet-name>newServlet</servlet-name>
-    <url-pattern>/bigrpc/new</url-pattern>
+    <servlet-name>deRpcServlet</servlet-name>
+    <url-pattern>/gwtrpctest/deRpc</url-pattern>
   </servlet-mapping>
   
   <!-- Default page to serve -->
