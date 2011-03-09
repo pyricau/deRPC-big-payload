@@ -8,49 +8,42 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.RootPanel;
 
-/**
- * Entry point classes define <code>onModuleLoad()</code>.
- */
 public class GwtRpcTest implements EntryPoint {
 
-	private static final ClassicRpcServiceAsync	oldService	= GWT.create(ClassicRpcService.class);
+	private static final ClassicRpcServiceAsync oldService = GWT.create(ClassicRpcService.class);
+	private static final DeRpcServiceAsync newService = GWT.create(DeRpcService.class);
 
-	private static final DeRpcServiceAsync	newService	= GWT.create(DeRpcService.class);
-
-	/**
-	 * This is the entry point method.
-	 */
 	public void onModuleLoad() {
-		final Button oldButton = new Button("Old");
-		final Button newButton = new Button("New");
+		final Button classicRPCButton = new Button("classicRPC");
+		final Button deRPCButton = new Button("deRPC");
 
-		RootPanel.get("sendButtonContainer").add(oldButton);
-		RootPanel.get("sendButtonContainer").add(newButton);
+		RootPanel rootPanel = RootPanel.get("sendButtonContainer");
+		rootPanel.add(classicRPCButton);
+		rootPanel.add(deRPCButton);
 
-		oldButton.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				oldService.retrieve(new AsyncCallback<Data>() {
+		classicRPCButton.addClickHandler(new RetrieveClickHandler(oldService));
+		deRPCButton.addClickHandler(new RetrieveClickHandler(newService));
+	}
+	
+	static class RetrieveClickHandler implements ClickHandler {
+		private final CommonServiceAsync commonServiceAsync;
+		
+		public RetrieveClickHandler(CommonServiceAsync commonServiceAsync) {
+			this.commonServiceAsync = commonServiceAsync;
+		}
 
-					@Override
-					public void onSuccess(Data result) {}
+		@Override
+		public void onClick(ClickEvent event) {
+			commonServiceAsync.retrieve(new AsyncCallback<Data>() {
 
-					@Override
-					public void onFailure(Throwable caught) {}
-				});
-			}
-		});
+				@Override
+				public void onSuccess(Data result) {
+				}
 
-		newButton.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				newService.retrieve(new AsyncCallback<Data>() {
-
-					@Override
-					public void onSuccess(Data result) {}
-
-					@Override
-					public void onFailure(Throwable caught) {}
-				});
-			}
-		});
+				@Override
+				public void onFailure(Throwable caught) {
+				}
+			});
+		}
 	}
 }

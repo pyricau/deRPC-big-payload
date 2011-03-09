@@ -7,9 +7,24 @@ import java.util.TreeMap;
 
 import com.excilys.blog.bigrpc.client.Data;
 
+/**
+ * Factory and container for random {@link Data}.
+ */
 public class DataGenerator {
+	
+	private static final Data data = generateData();
+	
+	/**
+	 * Always returns the same instance, which has been generated using {@link #generateData()}
+	 */
+	public static Data getDataInstance() {
+		return data;
+	}
 
-	public static Data generateData() {
+	/**
+	 * Generates a random {@link Data}
+	 */
+	private static Data generateData() {
 		List<TreeMap<Integer, Integer>> big = new ArrayList<TreeMap<Integer, Integer>>();
 
 		for (int i = 0; i < 1000; i++) {
