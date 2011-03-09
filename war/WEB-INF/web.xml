@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+    "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+  
+  <!-- Servlets -->
+  <servlet>
+    <servlet-name>oldServlet</servlet-name>
+    <servlet-class>com.excilys.blog.bigrpc.server.OldRpcServiceImpl</servlet-class>
+  </servlet>
+  
+    
+  <servlet>
+    <servlet-name>newServlet</servlet-name>
+    <servlet-class>com.excilys.blog.bigrpc.server.NewRpcServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>oldServlet</servlet-name>
+    <url-pattern>/bigrpc/old</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>newServlet</servlet-name>
+    <url-pattern>/bigrpc/new</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Default page to serve -->
+  <welcome-file-list>
+    <welcome-file>BigRpc.html</welcome-file>
+  </welcome-file-list>
+
+</web-app>
