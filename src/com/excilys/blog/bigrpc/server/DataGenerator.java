@@ -24,21 +24,21 @@ public class DataGenerator {
 	/**
 	 * Generates a random {@link Data}
 	 */
-	private static Data generateData() {
-		List<TreeMap<Integer, Integer>> big = new ArrayList<TreeMap<Integer, Integer>>();
+private static Data generateData() {
+	List<TreeMap<Integer, Integer>> big = new ArrayList<TreeMap<Integer, Integer>>();
+	
+	Random random = new Random();
 
-		for (int i = 0; i < 1000; i++) {
-			TreeMap<Integer, Integer> map = new TreeMap<Integer, Integer>();
-
-			for (int j = 0; j < 20; j++) {
-				Random random = new Random();
-				map.put(random.nextInt(), random.nextInt());
-			}
-
-			big.add(map);
+	for (int i = 0; i < 1000; i++) {
+		TreeMap<Integer, Integer> map = new TreeMap<Integer, Integer>();
+		for (int j = 0; j < 20; j++) {
+			map.put(random.nextInt(), random.nextInt());
 		}
 
-		return new Data(big);
+		big.add(map);
 	}
+
+	return new Data(big);
+}
 
 }
